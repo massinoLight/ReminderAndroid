@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+
+        <shape>
+            <gradient
+                android:angle="90"
+                android:startColor="#373838"
+                android:endColor="#101F27"
+                android:type="linear"
+                />
+            <!-- Don't worry about the id names I have named the id's
+            with reference to the file name for consistency -->
+            <corners android:radius="0dp"/>
+            <padding android:left="0dp"
+                android:right="0dp"
+                android:top="0dp"
+                android:bottom="0dp"/>
+            <stroke android:width="7dp"
+                android:color="@color/blue"/>
+
+        </shape>
+
+    </item>
+
+</selector>
