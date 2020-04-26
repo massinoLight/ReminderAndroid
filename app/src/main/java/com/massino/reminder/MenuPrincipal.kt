@@ -1,10 +1,14 @@
 package com.massino.reminder
 
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -13,8 +17,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.massino.reminder.ui.gallery.GalleryFragment
+import com.massino.reminder.ui.home.HomeFragment
 
 class MenuPrincipal : AppCompatActivity() {
+    lateinit var manager:FragmentManager
+    lateinit var transaction:FragmentTransaction
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -23,10 +31,25 @@ class MenuPrincipal : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        val email = intent.getStringExtra(MainActivity.EXTRA_EMAIL)
+        val nom = intent.getStringExtra(MainActivity.EXTRA_NOM)
+/**
+ * passage de paramétre entre l'activity et le fragement
+ * **/
+        manager=supportFragmentManager
+        transaction=manager.beginTransaction()
+       val fragmenthome=HomeFragment()
+        val bundle=Bundle()
+        bundle.putString(MainActivity.EXTRA_EMAIL,email)
+        bundle.putString(MainActivity.EXTRA_NOM,nom)
+        fragmenthome.arguments=bundle
+        transaction.add(R.id.nav_host_fragment,fragmenthome)
+        transaction.commit()
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
+
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "bienvenue $nom", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)

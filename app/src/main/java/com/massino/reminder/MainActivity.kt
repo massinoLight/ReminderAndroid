@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.massino.reminder.ui.gallery.GalleryFragment
 import kotlinx.android.synthetic.main.activity_menu_principal.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import org.jetbrains.anko.toast
@@ -28,9 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_principal)
         setSupportActionBar(toolbar)
-
-
-
         signInButton.setOnClickListener {
             createSignInIntent()
         }
@@ -76,6 +74,12 @@ class MainActivity : AppCompatActivity() {
                     val intent2 = Intent(this, MenuPrincipal::class.java)
                     intent2.putExtra(EXTRA_EMAIL, user.email)
                     intent2.putExtra(EXTRA_NOM, user.displayName)
+
+                   /* val fragmentgalley= GalleryFragment()
+                    val bundle=Bundle()
+                    bundle.putString(MainActivity.EXTRA_EMAIL,user.email).toString()
+                    bundle.putString(MainActivity.EXTRA_NOM,user.displayName).toString()
+                    fragmentgalley.arguments=bundle*/
 
                     startActivity(intent2)
                 }else {
