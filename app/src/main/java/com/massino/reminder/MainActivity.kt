@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
             .addOnCompleteListener {
                 // ...
             }
-        // [END auth_fui_delete]
+
     }
 
 }

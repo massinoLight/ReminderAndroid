@@ -14,21 +14,42 @@ import com.massino.reminder.MainActivity
 import com.massino.reminder.R
 
 class GalleryFragment : Fragment() {
+    companion object {
+
+        fun newInstance(nom: String): GalleryFragment {
+
+            val args = Bundle()
+
+            args.putString(MainActivity.EXTRA_NOM, nom)
+            val fragment = GalleryFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     private lateinit var galleryViewModel: GalleryViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         galleryViewModel =
-            ViewModelProviders.of(this).get(GalleryViewModel::class.java)
+                ViewModelProviders.of(this).get(GalleryViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_gallery, container, false)
         val textView: TextView = root.findViewById(R.id.text_gallery)
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+
+        Log.e(TAG, "on est dans le fragement gallery")
+       // val email = arguments?.getString(MainActivity.EXTRA_EMAIL)
+        val nom = arguments?.getString(MainActivity.EXTRA_NOM)
+
+
+        Log.e(TAG, " nom $nom")
+        textView.text = "bienvenue $nom"
+
+
+
+
         return root
     }
 }
