@@ -17,4 +17,18 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
     </group>
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/share"
+            android:icon="@drawable/ic_share"
+            android:title="Partager" />
+        <item
+            android:id="@+id/rate_us"
+            android:icon="@drawable/ic_star"
+            android:title="Nous noter" />
+    </group>
+
+
 </menu>

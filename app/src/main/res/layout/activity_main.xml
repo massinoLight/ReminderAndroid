@@ -22,6 +22,24 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
-        android:background="@drawable/custom_menu_backg"/>
+        android:background="@drawable/custom_menu_backg">
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/shapelogout"
+            android:drawableLeft="@drawable/ic_cancel"
+            android:padding="15dp"
+            android:shadowColor="@android:color/transparent"
+            android:text="Se déconnecter"
+            android:layout_gravity="bottom"/>
+
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

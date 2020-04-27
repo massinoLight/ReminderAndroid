@@ -2,8 +2,12 @@ package com.massino.reminder
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.widget.Toolbar
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
@@ -12,7 +16,7 @@ import com.massino.reminder.ui.gallery.GalleryFragment
 import kotlinx.android.synthetic.main.activity_menu_principal.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import org.jetbrains.anko.toast
-
+import java.net.URL
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         private const val RC_SIGN_IN = 123
         const val EXTRA_EMAIL = "user.email"
         const val EXTRA_NOM = "user.nom"
+        const val EXTRA_PHOTO="user.photo"
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,18 +74,12 @@ class MainActivity : AppCompatActivity() {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
                 if (user != null) {
-
                     val intent2 = Intent(this, MenuPrincipal::class.java)
                     intent2.putExtra(EXTRA_EMAIL, user.email)
                     intent2.putExtra(EXTRA_NOM, user.displayName)
-
-                   /* val fragmentgalley= GalleryFragment()
-                    val bundle=Bundle()
-                    bundle.putString(MainActivity.EXTRA_EMAIL,user.email).toString()
-                    bundle.putString(MainActivity.EXTRA_NOM,user.displayName).toString()
-                    fragmentgalley.arguments=bundle*/
-
+                    intent2.putExtra(EXTRA_PHOTO,user.photoUrl.toString())
                     startActivity(intent2)
+                    finish()
                 }else {
                     toast("utilisateur introuvable")
                 }
@@ -116,5 +114,7 @@ class MainActivity : AppCompatActivity() {
             }
 
     }
+
+
 
 }
